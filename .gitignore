@@ -1,0 +1,5 @@
+.netrwhist
+undo/
+.lazy.lua
+.lazy.lua.save
+lazy-lock.json

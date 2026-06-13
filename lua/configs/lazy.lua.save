@@ -14,7 +14,7 @@ return {
 
   rocks = {
     hererocks = false,
-  },
+  }, 
   performance = {
     rtp = {
       disabled_plugins = {
