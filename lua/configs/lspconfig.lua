@@ -64,7 +64,14 @@ vim.lsp.enable "rust_analyzer"
 -- Native C/C++ clangd Configuration for Termux
 -- ====================================================================
 vim.lsp.config("clangd", {
-  cmd = { "clangd" }, -- Forces your Termux native binary from $PATH
+  cmd = {
+    "clangd",
+    "--clang-tidy", -- Activates deep bug linting using clang-tidy
+    "--header-insertion=iwyu", -- Automatically inserts missing headers (Include What You Use)
+    "--header-insertion-decorators", -- Adds visual indicator indicators in autocomplete menu
+    "--completion-style=detailed", -- Shows function signatures in completion popups
+    "--fallback-style=llvm", -- Default formatting if no local .clang-format file exists
+  },
   capabilities = blink_capabilities, -- Connects autocomplete data stream to blink.cmp
   on_attach = on_attach,
   on_init = on_init,
