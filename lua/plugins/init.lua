@@ -14,6 +14,15 @@ return {
   },
 
   {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2", -- It is highly recommended to use Harpoon 2
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("harpoon"):setup()
+    end,
+  },
+
+  {
     "mfussenegger/nvim-dap",
     config = function()
       local dap = require "dap"

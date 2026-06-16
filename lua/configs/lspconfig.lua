@@ -59,3 +59,16 @@ vim.lsp.config("rust_analyzer", {
 
 -- Explicitly enable rust_analyzer to activate auto-start
 vim.lsp.enable "rust_analyzer"
+
+-- ====================================================================
+-- Native C/C++ clangd Configuration for Termux
+-- ====================================================================
+vim.lsp.config("clangd", {
+  cmd = { "clangd" }, -- Forces your Termux native binary from $PATH
+  capabilities = blink_capabilities, -- Connects autocomplete data stream to blink.cmp
+  on_attach = on_attach,
+  on_init = on_init,
+})
+
+-- Explicitly enable clangd to activate auto-start
+vim.lsp.enable "clangd"

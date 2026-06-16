@@ -22,9 +22,15 @@ local options = {
     rust = { "rustfmt" },
   },
 
+  formatters = {
+    ruff_format = {
+      args = { "format", "--config", "indent-width=2", "--stdin-filename", "$FILENAME", "-" },
+    },
+  },
+
   format_on_save = {
     -- These options will be passed to conform.format()
-    timeout_ms = 1000,
+    timeout_ms = 1000000,
     lsp_fallback = true,
   },
 }

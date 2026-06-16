@@ -42,6 +42,7 @@ vim.diagnostic.config {
 
   -- 2. Disable standard virtual text at the end of the line (saves phone screen width)
   virtual_text = false,
+  virtual_lines = false, -- { current_line = true },
 
   -- 3. Keep small icons/signs on the left gutter margin
   signs = true,
@@ -50,6 +51,36 @@ vim.diagnostic.config {
   update_in_insert = false, -- Don't flash underlines while actively typing
   severity_sort = true, -- Prioritize showing errors over warnings
 }
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    vim.diagnostic.open_float(nil, { focusable = false })
+  end,
+})
+
+local map = vim.keymap.set
+
+-- Harpoon bindings
+map("n", "<leader>ha", function()
+  require("harpoon"):list():add()
+end, { desc = "Harpoon Add File" })
+map("n", "<leader>hl", function()
+  require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
+end, { desc = "Harpoon Menu" })
+
+-- Quick jump keys to files 1 through 4
+map("n", "<leader>1", function()
+  require("harpoon"):list():select(1)
+end, { desc = "Harpoon to file 1" })
+map("n", "<leader>2", function()
+  require("harpoon"):list():select(2)
+end, { desc = "Harpoon to file 2" })
+map("n", "<leader>3", function()
+  require("harpoon"):list():select(3)
+end, { desc = "Harpoon to file 3" })
+map("n", "<leader>4", function()
+  require("harpoon"):list():select(4)
+end, { desc = "Harpoon to file 4" })
 
 -- 5. Set underline styling overrides inside Neovim's highlight engine
 -- This enforces specific styles (like undercurl or double lines) depending on your terminal terminal font capabilities
